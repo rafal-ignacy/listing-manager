@@ -12,7 +12,7 @@ class ItemPicturesUrlHandler:
     def __init__(self, inventory_id: int, type: str) -> None:
         self.inventory_id: int = inventory_id
         self.type: str = type
-        self.url_template: Template = Template(get_config("app/data/config.yaml")["item_pictures_url_handler"]["url_template"])
+        self.url_template: Template = Template(get_config("app/config.yaml")["item_pictures_url_handler"]["url_template"])
 
     def get_urls(self) -> str:
         picture_index: int = 1
@@ -23,8 +23,8 @@ class ItemPicturesUrlHandler:
             url: str = self.url_template.substitute(picture_id=picture_id)
             try:
                 request: requests.Response = requests.get(url)
-            except:
-                raise HostingCommunicationError
+            except Exception as error:
+                raise HostingCommunicationError(error)
             if request.status_code != 200:
                 break
             pictures_urls_list.append(url)
