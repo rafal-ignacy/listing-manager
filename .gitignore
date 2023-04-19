@@ -2,8 +2,6 @@ venv/
 *.pyc
 __init__.py
 setup.cfg
-db_credentials.txt
-db_queries.yaml
-config.yaml
-credentials.yaml
+*.json
+*.yaml
 .vscode
