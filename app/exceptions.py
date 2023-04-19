@@ -16,3 +16,15 @@ class DatabaseConnectionError(Exception):
 
 class DatabaseAddItemError(Exception):
     pass
+
+
+class RequestError(Exception):
+    pass
+
+
+class RequestNotCorrectError(Exception):
+    pass
+
+
+class CannotGetEbayAccessToken(Exception):
+    pass
