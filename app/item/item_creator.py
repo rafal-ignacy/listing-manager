@@ -11,6 +11,6 @@ class ItemCreator:
         item_pictures_url_handler: ItemPicturesUrlHandler = ItemPicturesUrlHandler(inventory_id, type)
         try:
             pictures_url: str = item_pictures_url_handler.get_urls()
-        except Exception as error:  # noqa: E722
+        except Exception as error:
             raise ItemObjectNotCreated(error)
         return Item(inventory_id, type, price, dimensions, pictures_url)
