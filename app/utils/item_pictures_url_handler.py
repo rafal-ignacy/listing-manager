@@ -3,7 +3,7 @@ from string import Template
 from typing import List
 import requests
 
-from app.utils.config import get_config
+from app.utils.config import get_yaml_config
 from app.exceptions import NoPicturesOnHosting, HostingCommunicationError
 
 
@@ -12,7 +12,7 @@ class ItemPicturesUrlHandler:
     def __init__(self, inventory_id: int, type: str) -> None:
         self.inventory_id: int = inventory_id
         self.type: str = type
-        self.url_template: Template = Template(get_config("app/config.yaml")["item_pictures_url_handler"]["url_template"])
+        self.url_template: Template = Template(get_yaml_config("app/config.yaml")["item_pictures_url_handler"]["url_template"])
 
     def get_urls(self) -> str:
         picture_index: int = 1
