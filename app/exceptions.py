@@ -28,3 +28,11 @@ class RequestNotCorrectError(Exception):
 
 class CannotGetEbayAccessToken(Exception):
     pass
+
+
+class CannotCreateEbayInventoryItem(Exception):
+    pass
+
+
+class CannotCreateEbayOffer(Exception):
+    pass
