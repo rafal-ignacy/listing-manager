@@ -1,14 +1,8 @@
 from dataclasses import dataclass
 from typing import Dict
-import json
-from json_templates import JsonTemplates  # type: ignore
-from enum import IntEnum
 
 from app.utils.config import get_yaml_config, get_json_config
-
-
-class Json(IntEnum):
-    Output = 1
+from app.utils.json_template import JsonTemplate
 
 
 @dataclass
@@ -18,7 +12,16 @@ class Headers:
         self.__credentials: Dict = get_yaml_config(credentials_file_path)
 
     def ebay_get_access_token(self) -> Dict:
-        json_template: JsonTemplates = JsonTemplates()
-        json_template.loads(json.dumps(self.__headers["get_ebay_access_token"]))
-        headers: Dict = json_template.generate({"base64_encoded_credentials": self.__credentials["ebay_base64_encoded_credentials"]})[Json.Output]
+        json_template: JsonTemplate = JsonTemplate(self.__headers["ebay_get_access_token"])
+        headers: dict = json_template.generate({"base64_encoded_credentials": self.__credentials["ebay_base64_encoded_credentials"]})
+        return headers
+
+    def ebay_create_inventory_item(self, access_token: str, platform_id: str) -> Dict:
+        json_template: JsonTemplate = JsonTemplate(self.__headers["ebay_create_inventory_item"][platform_id])
+        headers: Dict = json_template.generate({"access_token": access_token})
+        return headers
+
+    def ebay_create_offer(self, access_token: str, platform_id: str) -> Dict:
+        json_template: JsonTemplate = JsonTemplate(self.__headers["ebay_create_offer"][platform_id])
+        headers: Dict = json_template.generate({"access_token": access_token})
         return headers

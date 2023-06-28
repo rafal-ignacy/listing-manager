@@ -12,3 +12,11 @@ class Urls:
     def ebay_get_access_token(self) -> str:
         url: str = self.__urls["ebay_get_access_token"]
         return url
+
+    def ebay_create_inventory_item(self, inventory_id: int, type: str):
+        url: str = self.__urls["ebay_create_inventory_item"].replace("{sku}", str(inventory_id) + type)
+        return url
+
+    def ebay_create_offer(self) -> str:
+        url: str = self.__urls["ebay_create_offer"]
+        return url
