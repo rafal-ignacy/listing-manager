@@ -5,3 +5,4 @@ setup.cfg
 *.json
 *.yaml
 .vscode
+listing_descriptions/
