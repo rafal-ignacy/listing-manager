@@ -16,7 +16,6 @@ class JsonTemplate:
                 list_string: str = ""
                 for element in value:
                     list_string += "\"" + element + "\", "
-                print("[[ \"{{" + key + "}}\" ]]")
                 self.dictionary = self.dictionary.replace("[[\"{{ " + key + " }}\"]]", "[" + list_string[:-2] + "]")
             else:
                 raise TypeError("Passed incorrect variable type!")
