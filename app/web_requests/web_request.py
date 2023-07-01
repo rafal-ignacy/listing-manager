@@ -15,7 +15,7 @@ class WebRequest:
         try:
             match method_type:
                 case "POST":
-                    request = requests.post(self.url, headers=self.headers, json=self.payload, timeout=10)
+                    request = requests.post(self.url, headers=self.headers, data=self.payload, timeout=10)
                 case "PUT":
                     request = requests.put(self.url, headers=self.headers, json=self.payload, timeout=10)
                 case "GET":
