@@ -36,3 +36,7 @@ class CannotCreateEbayInventoryItem(Exception):
 
 class CannotCreateEbayOffer(Exception):
     pass
+
+
+class CannotExchangeCurrency(Exception):
+    pass
