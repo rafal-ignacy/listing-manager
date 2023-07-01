@@ -20,3 +20,7 @@ class Urls:
     def ebay_create_offer(self) -> str:
         url: str = self.__urls["ebay_create_offer"]
         return url
+
+    def exchange_currency(self) -> str:
+        url: str = self.__urls["exchange_currency"]
+        return url

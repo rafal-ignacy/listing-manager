@@ -1,13 +1,12 @@
 from dataclasses import dataclass
 from typing import List
-import json
 
 from app.web_requests.urls import Urls
 from app.web_requests.headers import Headers
 from app.web_requests.payloads import Payloads
 from app.web_requests.web_request import WebRequest
 from app.web_requests.response_handler import ResponseHandler
-from app.exceptions import CannotGetEbayAccessToken, CannotCreateEbayInventoryItem, CannotCreateEbayOffer
+from app.exceptions import CannotGetEbayAccessToken, CannotCreateEbayInventoryItem, CannotCreateEbayOffer, CannotExchangeCurrency
 
 
 @dataclass
@@ -48,3 +47,12 @@ class WebRequests:
             web_request.execute("POST")
         except Exception as error:
             raise CannotCreateEbayOffer(error)
+
+    def exchange_currency(self, currency: str) -> float:
+        url = self.urls.exchange_currency()
+        web_request = WebRequest(url)
+        try:
+            response_content = web_request.execute("GET")
+        except Exception as error:
+            raise CannotExchangeCurrency(error)
+        return self.response_handler.exchange_currency(response_content, currency)
