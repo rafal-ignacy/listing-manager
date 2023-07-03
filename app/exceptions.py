@@ -40,3 +40,11 @@ class CannotCreateEbayOffer(Exception):
 
 class CannotExchangeCurrency(Exception):
     pass
+
+
+class CannotPublishEbayOffer(Exception):
+    pass
+
+
+class DatabaseGetItemsError(Exception):
+    pass
