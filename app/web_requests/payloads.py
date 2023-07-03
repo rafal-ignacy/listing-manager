@@ -1,5 +1,6 @@
 from dataclasses import dataclass
 from typing import Dict, List
+import json
 
 from app.utils.config import get_yaml_config, get_json_config
 from app.utils.json_template import JsonTemplate
@@ -21,7 +22,7 @@ class Payloads:
         payload: Dict = json_template.generate({"inventory_id": inventory_id, "pictures_urls": picture_urls})
         return payload
 
-    def ebay_create_offer(self, platform_id: str, inventory_id: int, type: str, listing_description: str, price: float) -> Dict:
+    def ebay_create_offer(self, platform_id: str, inventory_id: int, type: str, listing_description: str, price: float) -> str:
         json_template: JsonTemplate = JsonTemplate(self.__payloads["ebay_create_offer"][platform_id][type])
         payload: Dict = json_template.generate({"sku": str(inventory_id) + type, "listing_description": listing_description, "price": str(price)})
-        return payload
+        return json.dumps(payload)

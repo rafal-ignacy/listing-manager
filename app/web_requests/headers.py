@@ -25,3 +25,8 @@ class Headers:
         json_template: JsonTemplate = JsonTemplate(self.__headers["ebay_create_offer"][platform_id])
         headers: Dict = json_template.generate({"access_token": access_token})
         return headers
+
+    def ebay_publish_offer(self, access_token: str) -> Dict:
+        json_template: JsonTemplate = JsonTemplate(self.__headers["ebay_publish_offer"])
+        headers: Dict = json_template.generate({"access_token": access_token})
+        return headers

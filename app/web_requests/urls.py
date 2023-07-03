@@ -21,6 +21,10 @@ class Urls:
         url: str = self.__urls["ebay_create_offer"]
         return url
 
+    def ebay_publish_offer(self, offer_id: str) -> str:
+        url: str = self.__urls["ebay_publish_offer"].replace("{offer_id}", offer_id)
+        return url
+
     def exchange_currency(self) -> str:
         url: str = self.__urls["exchange_currency"]
         return url

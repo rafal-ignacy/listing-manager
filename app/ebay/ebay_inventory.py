@@ -23,4 +23,10 @@ class EbayInventory:
         listing_description: str = listing_description_handler.create_description(platform_id, type, dimensions)
         price_exchange_handler: PriceExchangeHandler = PriceExchangeHandler()
         price = price_exchange_handler.get_price(price, platform_id)
-        self.web_requests.ebay_create_offer(access_token, platform_id, inventory_id, type, listing_description, price)
+        offer_id: str = self.web_requests.ebay_create_offer(access_token, platform_id, inventory_id, type, listing_description, price)
+        return offer_id
+
+    def publish_offer(self, offer_id: str):
+        access_token: str = self.ebay_auth.get_access_token()
+        listing_id: str = self.web_requests.ebay_publish_offer(access_token, offer_id)
+        return listing_id
