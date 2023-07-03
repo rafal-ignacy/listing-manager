@@ -9,7 +9,7 @@ from app.exceptions import RequestError, RequestNotCorrectError
 class WebRequest:
     url: str
     headers: Optional[Dict] = None
-    payload: Optional[Dict] = None
+    payload: Optional[Dict] | str = None
 
     def execute(self, method_type: str) -> Dict | bytes | None:
         try:
